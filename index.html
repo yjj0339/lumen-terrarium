@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080f1c"><meta name="description" content="一方静谧：悬浮于深空的玻璃生态世界。雪山、森林、河流与生灵，在光阴里缓慢呼吸。">
+  <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>一方静谧 · Lumen Terrarium</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='none' stroke='%23a2dbca' stroke-width='3' d='M32 4 57 18v28L32 60 7 46V18ZM7 18l25 15 25-15M32 33v27'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+    <div id="scene" aria-label="可拖动旋转的三维玻璃生态立方体"></div>
+    <div class="vignette"></div>
+    <header class="topbar interface">
+      <a class="brand" href="#" aria-label="回到初始视角"><svg viewBox="0 0 40 44" aria-hidden="true"><path d="M20 2 37 12v20L20 42 3 32V12ZM3 12l17 10 17-10M20 22v20"/></svg><span>望微<span class="brand-en">Lumen terrarium</span></span></a>
+      <div class="top-actions"><span class="live"><i></i>世界正在呼吸</span><button id="help" class="icon-button" aria-label="操作指南" title="操作指南">?</button><button id="fullscreen" class="icon-button" aria-label="全屏" title="全屏"><svg viewBox="0 0 24 24"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></svg></button></div>
+    </header>
+    <section class="intro interface">
+      <div class="intro-rule"></div><p class="collection">一枚收藏宇宙的容器</p>
+      <h1>一方<br><span>静谧</span><em>Within, a world.</em></h1>
+      <p class="poem">让山川住进掌心，<br>让时间慢慢流过森林。</p>
+      <button id="explore" class="explore">走近一点 <span>↗</span></button>
+    </section>
+    <div id="hotspots" class="interface"></div>
+    <aside class="views interface" aria-label="观察视角">
+      <span class="views-title">视角</span>
+      <button data-view="overview" class="view-button active" aria-pressed="true" title="全景"><svg viewBox="0 0 24 24"><path d="m12 3 8 5v8l-8 5-8-5V8Zm-8 5 8 5 8-5M12 13v8"/></svg><span>全景</span></button>
+      <button data-view="river" class="view-button" aria-pressed="false" title="溪谷"><svg viewBox="0 0 24 24"><path d="M14 3c-10 5 9 7-2 12-4 2-5 3-4 6M19 3c-10 5 9 7-2 12-4 2-5 3-4 6"/></svg><span>溪谷</span></button>
+      <button data-view="forest" class="view-button" aria-pressed="false" title="林间"><svg viewBox="0 0 24 24"><path d="m9 3-6 9h4l-4 6h12l-4-6h4Zm0 15v4M17 6l4 7h-3l3 5h-4"/></svg><span>林间</span></button>
+      <button data-view="peaks" class="view-button" aria-pressed="false" title="雪峰"><svg viewBox="0 0 24 24"><path d="m2 20 10-17 10 17ZM8 10l4 3 4-3M4 20h16"/></svg><span>雪峰</span></button>
+    </aside>
+    <nav class="camera-tools interface" aria-label="镜头控制">
+      <button id="zoom-out" aria-label="缩小" title="缩小"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+      <button id="reset-view" aria-label="复位视角" title="复位视角"><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></svg></button>
+      <button id="zoom-in" aria-label="放大" title="放大"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg></button>
+    </nav>
+    <section class="control-dock interface" aria-label="世界控制">
+      <div class="time-section" id="time-controls">
+        <div class="time-heading"><span id="phase">午后微光</span><div><time id="clock">16:20</time><button id="cycle" aria-pressed="true" title="自动昼夜循环">自动流转 <i></i></button></div></div>
+        <div class="time-slider"><svg viewBox="0 0 24 24"><path d="M18 16A8 8 0 0 1 8 6a8 8 0 1 0 10 10Z"/></svg><input id="daytime" type="range" min="0" max="24" step="0.01" value="16.33" aria-label="时间"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/></svg></div>
+        <div class="time-presets"><button data-time="6.5">晨曦</button><button data-time="12">晴昼</button><button data-time="17.3">日落</button><button data-time="22">星夜</button></div>
+      </div>
+      <div class="dock-divider"></div>
+      <div class="play-section">
+        <button id="pause" class="dock-button" aria-label="暂停世界" aria-pressed="false"><svg id="pause-icon" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg><span>暂停</span></button>
+        <button id="orbit" class="dock-button" aria-pressed="false"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="5" transform="rotate(-25 12 12)"/><circle cx="12" cy="12" r="2"/><path d="m18 3 3 3-4 1"/></svg><span>环绕</span></button>
+        <button id="sound" class="dock-button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="m4 9 4 0 5-4v14l-5-4H4Zm13-1q5 4 0 8"/></svg><span>自然声</span></button>
+        <button id="capture" class="dock-button"><svg viewBox="0 0 24 24"><path d="M3 7h5l2-3h4l2 3h5v13H3Z"/><circle cx="12" cy="13" r="4"/></svg><span>留影</span></button>
+      </div>
+    </section>
+    <footer class="footer interface"><span class="desktop-hint">拖动旋转 <b>·</b> 滚轮缩放 <b>·</b> 点击光点探索</span><button id="settings-toggle" aria-expanded="true" aria-controls="time-controls">时间与光照 <span>⌄</span></button><button id="zen">纯净观景 <kbd>H</kbd></button></footer>
+    <button id="exit-zen" aria-label="显示界面">返回操作 <kbd>H</kbd></button>
+    <div id="toast" role="status"></div>
+    <section id="detail" class="detail" hidden><button id="close-detail" class="close" aria-label="关闭详情">×</button><span id="detail-kicker"></span><h2 id="detail-title"></h2><p id="detail-copy"></p><button id="detail-view">靠近观察 ↗</button></section>
+    <dialog id="guide"><button id="close-help" class="close" aria-label="关闭指南">×</button><div class="dialog-cube">◇</div><h2>慢下来，看见小小世界。</h2><p>单指拖动旋转，双指捏合缩放。<br>也可以使用 ＋、− 和复位键调整镜头。</p><p class="touch-guide">下方四个视角可以走近溪谷、森林与雪峰。<br>“时间与光照”可展开或收起时间面板。<br>“留影”生成照片，可保存、分享或长按图片保存。<br>横过手机试试，功能键会移到右侧。</p><div class="shortcuts"><span>暂停 / 继续 <kbd>Space</kbd></span><span>纯净观景 <kbd>H</kbd></span><span>回到全景 <kbd>R</kbd></span><span>保存画面 <kbd>P</kbd></span></div><p class="guide-small">时间滑杆控制光照。星夜里，寻找林间的萤火。<br>开启自然声，听见风、水与远处的鸟鸣。</p></dialog>
+    <dialog id="photo-dialog" aria-labelledby="photo-title"><button id="close-photo" class="close" aria-label="关闭照片">×</button><h2 id="photo-title">留住这一刻</h2><img id="photo-image" alt="刚刚拍下的生态世界"><p>可长按图片保存，或使用下方按钮。</p><div class="photo-actions"><a id="download-photo" download>保存图片</a><button id="share-photo" hidden>分享照片</button></div></dialog>
+    <div id="loader"><div class="loading-cube">◇</div><h2>山川正在醒来</h2><p id="load-status">种下森林，接住一束光…</p><div class="loading-line"><i></i></div></div>
+    <noscript>这个三维世界需要启用 JavaScript。请使用支持 WebGL 2 的现代浏览器。</noscript>
+  </main>
+  <script src="bundle.js"></script>
+</body>
+</html>

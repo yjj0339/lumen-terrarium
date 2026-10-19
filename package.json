@@ -1,0 +1,11 @@
+{
+  "name":"lumen-terrarium",
+  "version":"1.1.0",
+  "private":true,
+  "type":"module",
+  "description":"An interactive miniature ecosystem in a floating glass cube, with full mobile controls.",
+  "license":"MIT",
+  "scripts":{"build":"node build.mjs","start":"node server.mjs"},
+  "devDependencies":{"esbuild":"0.25.12"},
+  "engines":{"node":">=20"}
+}

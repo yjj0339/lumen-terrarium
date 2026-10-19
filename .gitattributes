@@ -1,0 +1,3 @@
+vendor/** linguist-vendored -whitespace
+bundle.js linguist-generated -whitespace
+"一方静谧-直接打开.html" linguist-generated -whitespace

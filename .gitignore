@@ -1,0 +1,9 @@
+node_modules/
+tmp/
+exports/
+qa/
+.DS_Store
+*.log
+*.ps1
+*.cmd
+vendor/jsm/
